@@ -33,3 +33,9 @@ Route::get('/contact', function () {
       ->with("address", $address) 
       ->with("phone_number", $phone_number); 
 })->name("home.contact"); 
+
+# ------------PRODUCTS-----------------
+
+Route::get('/products', 'App\Http\Controllers\ProductController@index')->name("product.index"); 
+
+Route::get('/products/{id}', 'App\Http\Controllers\ProductController@show')->name("product.show");
