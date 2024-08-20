@@ -52,9 +52,22 @@ class ProductController extends Controller
     { 
         $request->validate([ 
             "name" => "required", 
-            "price" => "required" 
+            "price" => "required|numeric|min:0" 
         ]); 
-        dd($request->all()); 
+        //dd($request->all()); //dump the request data
         //here will be the code to call the model and save it to the database 
+
+        //if the code runs this, then the form was valid and the product was saved
+        //should add database validation before this, but...
+
+        return redirect()->route('product.success');
     }
+
+    public function success(): View 
+    { 
+        $viewData = []; 
+        $viewData["title"] = "Products - Online Store"; 
+        $viewData["subtitle"] =  "Successfully created product"; 
+        return view('product.success')->with("viewData", $viewData); 
+    } 
 } 
