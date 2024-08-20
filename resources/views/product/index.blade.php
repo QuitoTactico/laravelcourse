@@ -8,8 +8,18 @@
     <div class="card"> 
       <img src="https://laravel.com/img/logotype.min.svg" class="card-img-top img-card"> 
       <div class="card-body text-center"> 
-        <a href="{{ route('product.show', ['id'=> $product["id"]]) }}" 
+        @if ($product["price"] >= 100)
+        <!--
+          <a href="{{ route('product.show', ['id'=> $product["id"]]) }}" 
+          class="btn bg-primary text-red">{{ $product["name"] }}</a> 
+        -->
+          <a href="{{ route('product.show', ['id'=> $product["id"]]) }}" 
+          class="btn bg-danger text-white">{{ $product["name"] }}</a> 
+        @else
+          <a href="{{ route('product.show', ['id'=> $product["id"]]) }}" 
           class="btn bg-primary text-white">{{ $product["name"] }}</a> 
+        @endif
+        <p class="card-text">{{ $product["price"] }}$</p> 
       </div> 
     </div> 
   </div> 
