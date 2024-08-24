@@ -52,9 +52,9 @@ class ProductController extends Controller
         //dd($request->all()); //dump the request data
         //here will be the code to call the model and save it to the database 
 
-        //if the code runs this, then the form was valid and the product was saved
-        //should add database validation before this, but...
-
+        Product::create($request->only(["name","price"])); 
+ 
+        #return back(); 
         return redirect()->route('product.success');
     }
 
