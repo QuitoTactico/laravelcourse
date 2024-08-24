@@ -5,22 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request; 
 use Illuminate\View\View; 
 use Illuminate\Http\RedirectResponse;
+use App\Models\Product; 
  
 class ProductController extends Controller 
-{ 
-    public static $products = [ 
-        ["id"=>"1", "name"=>"TV", "description"=>"Best TV", "price"=>40], 
-        ["id"=>"2", "name"=>"iPhone", "description"=>"Best iPhone", "price"=>950], 
-        ["id"=>"3", "name"=>"Chromecast", "description"=>"Best Chromecast", "price"=>70], 
-        ["id"=>"4", "name"=>"Glasses", "description"=>"Best Glasses", "price"=>15] 
-    ]; 
- 
+{
+
     public function index(): View 
     { 
         $viewData = []; 
         $viewData["title"] = "Products - Online Store"; 
         $viewData["subtitle"] =  "List of products"; 
-        $viewData["products"] = ProductController::$products; 
+        $viewData["products"] = Product::all();
         return view('product.index')->with("viewData", $viewData); 
     } 
  
@@ -28,12 +23,12 @@ class ProductController extends Controller
     { 
         $viewData = []; 
 
-        if (!isset(ProductController::$products[$id-1])) {
-            #return redirect()->route('product.index')->with('error', 'Product not found');
+        try {
+            $product = Product::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return redirect()->route('home.index');
         }
 
-        $product = ProductController::$products[$id-1]; 
         $viewData["title"] = $product["name"]." - Online Store"; 
         $viewData["subtitle"] = $product["name"]." - Product information"; 
         $viewData["product"] = $product; 
