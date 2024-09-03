@@ -52,3 +52,9 @@ Route::get('/products/success', 'App\Http\Controllers\ProductController@success'
 //always keep this one at the end
 
 Route::get('/products/{id}', 'App\Http\Controllers\ProductController@show')->name('product.show');
+
+Route::get('/cart', 'App\Http\Controllers\CartController@index')->name("cart.index"); 
+
+Route::get('/cart/add/{id}', 'App\Http\Controllers\CartController@add')->name("cart.add"); 
+
+Route::get('/cart/removeAll/', 'App\Http\Controllers\CartController@removeAll')->name("cart.removeAll");
