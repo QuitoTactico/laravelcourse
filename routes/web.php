@@ -62,3 +62,7 @@ Route::get('/cart/removeAll/', 'App\Http\Controllers\CartController@removeAll')-
 Route::get('/image', 'App\Http\Controllers\ImageController@index')->name("image.index"); 
 
 Route::post('/image/save', 'App\Http\Controllers\ImageController@save')->name("image.save"); 
+
+Route::get('/image-not-di', 'App\Http\Controllers\ImageNotDIController@index')->name("imagenotdi.index");
+
+Route::post('/image-not-di/save', 'App\Http\Controllers\ImageNotDIController@save')->name("imagenotdi.save"); 
