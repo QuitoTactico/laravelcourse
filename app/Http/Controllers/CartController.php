@@ -8,10 +8,6 @@ use Illuminate\View\View;
 
 class CartController extends Controller
 {
-
-
-
-    
     public function index(Request $request): View
     {
         $products = []; //this simulates the database
